@@ -1,0 +1,58 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* background-color: rgb(254, 241, 240); */
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-around;
+    width: 1000px;
+    margin: 40px auto;
+}
+
+form div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    padding: 10px;
+}
+
+form input{
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid gray;
+    margin: 10px;
+}
+
+h1{
+    text-align: center;
+    margin: 20px;
+}
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+button{
+    width: 100px;
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    box-shadow: 2px 2px black;
+    background-color: slategray;
+    color: snow;
+}
+
+h4{
+    color: rgb(21, 9, 94);
+    margin: 20px, 0, 0, 20px;
+}
+
+body{
+    height: 820px;
+    background-image: radial-gradient(circle at top left, rgba(235, 235, 115, 0.5), transparent 500px),radial-gradient(circle at top right, rgba(127, 148, 231, 0.5), transparent 2000px),radial-gradient(at bottom left, rgba(43, 0, 255, 0.482), transparent 1200px),radial-gradient(at bottom right, rgba(255, 100, 100, 0.557),transparent 1000px);
+}

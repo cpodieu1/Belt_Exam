@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wishes.css'%}">
+    <title>Users</title>
+</head>
+<body>
+        <h4>Hello {{ user.first_name }}! Welcome to Wishing App!</h4>
+        <form method='post' action="/logout">
+            {% csrf_token %}
+            <button type="submit" value='submit' id="logout" >Logout</button>
+        </form>
+        <button type="submit"><a href="/new">Make a wish!</a></button>
+        <button type="submit"><a href="/stats">View stats!</a></button>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <div class="table">
+        <table>
+            <thead>
+                <p>Your wishes for Birthday:</p>
+                <tr>
+                    <th>Item</th>
+                    <th>Date added</th>
+                    <th>Edit</th>
+                    <th>Delete Wish</th>
+                    <th>Granted!</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for wish in wishes %}
+                <tr>
+                    <th>{{ wish.item }}</th>
+                    <td>{{ wish.created_at }}</td>
+                    <td><button type="submit"><a href="/edit/{{wish.id}}">Edit</a></button></td>
+                    <td>
+                        <form action="/delete" method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name='wish_id' value="{{ wish.id }}">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/grant" method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name='user_id' value="{{ user.id}}">
+                            <input type="hidden" name='wish_item' value="{{ wish.item }}">
+                            <input type="hidden" name='wish_id' value="{{ wish.id }}">
+                            <input type="hidden" name='wish_created' value="{{ wish.created_at }}">
+                            <button type="submit">Granted!</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="table">
+        <table>
+            <thead>
+                <p>Granted wishes for everyone:</p>
+                <tr>
+                    <th>Item</th>
+                    <th>Name</th>
+                    <th>Date added</th>
+                    <th>Date granted</th>
+                    <th>Likes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grant in granted_wishes %}
+                <tr>
+                    <th>{{grant.item}}</th>
+                    <td>{{grant.user.first_name}}</td>
+                    <td>{{grant.date_added}}</td>
+                    <td>{{grant.granted_at}}</td>
+                    <td>{{grant.likes.count}}</td>
+                    <td>
+                        <form action="/process_likes" method="POST">
+                        {%csrf_token%}
+                        <input type="hidden" name="likes" value="{{wish.id}}">
+                        <button type="submit">Like</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

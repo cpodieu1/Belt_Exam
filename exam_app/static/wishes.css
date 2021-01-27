@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 10px 0;
+    padding: 20px;
+    background-image: linear-gradient(to right, rgba(0, 136, 255, 0.077), rgba(0, 187, 255, 0.406));
+}
+
+div{
+    margin: 10px;
+}
+
+h1 {
+    vertical-align: top;
+}
+
+
+.table {
+    margin-top: 40px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 15px;
+
+}
+

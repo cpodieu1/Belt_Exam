@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wishes.css'%}">
+    <title>New Wish</title>
+</head>
+<body>
+    <h2 class='new_user'>Hello {{ user.first_name }} tell us about your birthday wish!</h2>
+    <form action="/new_wish" method='POST'>
+        {% csrf_token %}
+        <div>
+            <ul>
+                {% for message in messages %}
+                <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+            I wish for:<input type="text"name='item'>
+        </div>
+        <div>
+            Description:<input type="text" name='desc'>
+        </div>
+        <input type="hidden" name='user_id' value="{{ user.id }}">
+        <button type="submit" value='submit'>Add</button>
+        <button type="submit"><a href="/">Cancel</a></button> 
+    </form>
+</body>
+</html>

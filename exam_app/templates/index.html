@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wishing App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css'%}">
+</head>
+<body>
+    <p>
+    {% for message in messages %}
+        <h4>{{ message }}</h4>
+    {% endfor %}
+    </p>
+    <h1>Welcome! Sign in to make a wish!</h1>
+    <div class="wrapper">
+        <div class="container">
+            <h2>Registration</h2>
+            <div class="main">
+                <form action="/register" method="POST">
+                    {% csrf_token%}
+                    <div>First Name <input type="text" name="first_name"></div>
+                    <div>Last Name <input type="text" name="last_name"></div>
+                    <div>Email <input type="email" name="email"></div>
+                    <div>Password <input type="password" name="password"></div>
+                    <div>Confirm PW <input type="password" name="confirm_pw"></div>
+                    <div><button type="submit">Register</button></div>
+                </form>
+            </div>
+        </div>
+        <div class="containe">
+            <h2>Login</h2>
+            <div class="main">
+                <form action="/login" method="POST">
+                    {%csrf_token%}
+                    <div>Email <input type="email" name="email"></div>
+                    <div>Password <input type="password" name="password"></div>
+                    <div><button type="submit">Log In</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
